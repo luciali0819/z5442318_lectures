@@ -155,8 +155,9 @@ def read_prc_dat(pth: str):
     df['date'] = pd.to_datetime(df['date'], errors='coerce')
 
     df['volume'] = df['volume'].apply(str_to_float)
-
     df['adj_close'] = df['adj_close'].apply(str_to_float)
+
+    df = df.sort_values(by=['ticker', 'date'])
     df['return'] = df.groupby('ticker')['adj_close'].pct_change(fill_method=None)
 
     df = df[['date', 'ticker', 'return', 'volume']].dropna(subset=['return'])
