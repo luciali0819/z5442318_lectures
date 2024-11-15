@@ -219,7 +219,7 @@ def mk_ret_df(
         tickers: list[str],
 ):
     """ Combine information from two sources to produce a data frame 
-    ith stock and market returns according to the following rules:
+    with stock and market returns according to the following rules:
 
     - Returns should be computed using information from <PRICE_DAT>, if
       possible. If a ticker is not found in the <PRICE_DAT> file, then returns
