@@ -6,12 +6,7 @@
 # only import statements in this module should be the ones below. In
 # particular, this means that you cannot import modules inside functions.
 
-import os
-
-import numpy as np
 import pandas as pd
-
-import tk_utils
 
 
 # ----------------------------------------------------------------------------
@@ -41,7 +36,7 @@ def read_dat(pth: str) -> pd.DataFrame:
     return pd.read_csv(pth, dtype=str).astype(str)
 
 
-def str_to_float(value: str) -> float:
+def str_to_float(value: str) -> float | None:
     """ This function attempts to convert a string into a float. It returns a
     float if the conversion is successful and None otherwise. 
 
@@ -63,7 +58,6 @@ def str_to_float(value: str) -> float:
     except:
         return None
     return float(out)
-
 
 
 def fmt_col_name(label: str) -> str:
@@ -94,6 +88,7 @@ def fmt_col_name(label: str) -> str:
     formatted_label = "_".join(formatted_label.split())
     return formatted_label
 
+
 def fmt_ticker(value: str) -> str:
     """ Formats a ticker value according to the rules specified in the "Project
     Description" slide
@@ -111,6 +106,7 @@ def fmt_ticker(value: str) -> str:
     """
     # <COMPLETE_THIS_PART>
     return value.strip().replace('"', '').replace("'", '').upper()
+
 
 def read_prc_dat(pth: str):
     """ This function produces a data frame with volume and return from a single
@@ -220,7 +216,7 @@ def mk_ret_df(
         pth_prc_dat: str,
         pth_ret_dat: str,
         tickers: list[str],
-        ):
+):
     """ Combine information from two sources to produce a data frame 
     with stock and market returns according to the following rules:
 
@@ -296,8 +292,3 @@ def mk_ret_df(
     combined_df = combined_df[columns]
 
     return combined_df
-
-
-
-
-
